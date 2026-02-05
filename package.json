@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:goller-architekten": "node dist/goller-architekten/server/server.mjs"
+    "serve:ssr:goller-architekten": "node dist/goller-architekten/server/server.mjs",
+    "deploy": "ng build --configuration production --base-href /goller-architekten/ && npx angular-cli-ghpages --dir=dist/goller-architekten/browser"
   },
   "prettier": {
     "printWidth": 100,
