@@ -1,0 +1,9 @@
+{
+  "routes": {
+    "/goller-architekten": {},
+    "/goller-architekten/projekt": {},
+    "/goller-architekten/projekte": {},
+    "/goller-architekten/services": {},
+    "/goller-architekten/team": {}
+  }
+}
