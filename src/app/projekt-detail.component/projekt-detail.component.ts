@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { SafeUrlPipe } from '../safe-url.pipe';
 
 @Component({
@@ -9,22 +9,28 @@ import { SafeUrlPipe } from '../safe-url.pipe';
   imports: [CommonModule, SafeUrlPipe],
   templateUrl: './projekt-detail.component.html',
 })
-export class ProjektDetailComponent {
-  slug!: string;
-  pdfUrl!: string;
-  pdfUrlWithParams!: string;
+export class ProjektDetailComponent implements AfterViewInit {
 
-  constructor(private route: ActivatedRoute) {}
+  title = '';
+  pdfUrlWithParams = '';
+
+  constructor(private route: ActivatedRoute, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit() {
-    this.slug = this.route.snapshot.paramMap.get('slug') || '';
-    this.pdfUrl = `assets/projekte/pdf/${this.slug}.pdf`;
-    this.pdfUrlWithParams = this.pdfUrl + '#zoom=FitH&toolbar=0';
+    this.route.queryParams.subscribe(params => {
+      const pdf = params['pdf'];
+      this.title = params['title'] || 'Projekt';
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (pdf) {
+        const baseUrl = `assets/projekte/pdf/${pdf}`;
+        this.pdfUrlWithParams = baseUrl + '#zoom=FitH&toolbar=0';
+      }
+    });
   }
 
-
-  
-
+  ngAfterViewInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
 }

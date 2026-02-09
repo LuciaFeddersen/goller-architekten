@@ -28,11 +28,11 @@ export class ProjektComponent {
     {
       kategorie: 'Schulen',
       projekte: [
-        { slug: 'Hans-und-Hilde-Coppi-Gymnasium', titel: 'Hans-und-Hilde-Coppi-Gymnasium', ort: 'Berlin Lichtenberg', bild: 'assets/projekte/bilder/Hans-und-Hilde-Coppi-Gymnasium.png', dateiname: 'src/assets/projekte/pdf/Hans-und-Hilde-Coppi-Gymnasium.pdf' },
-        { slug: 'Benjamin-Franklin-Oberschule', titel: 'Benjamin-Franklin-Oberschule', ort: 'Berlin Reinickendorf ', bild: 'assets/projekte/bilder/Benjamin-Franklin-Oberschule.png', dateiname: 'src/assets/projekte/pdf/Benjamin-Franklin-Oberschule.pdf' },
-        { slug: 'Cauer-Grundschule', titel: 'Cauer-Grundschule', ort: 'Berlin Charlottenburg-Wilmersdorf', bild: 'assets/projekte/bilder/Cauer-Grundschule.png', dateiname: 'src/assets/projekte/pdf/Cauer-Grundschule.pdf' },
-        { slug: 'Thomas-Mann-Grundschule', titel: 'Thomas-Mann-Grundschule', ort: 'Berlin Pankow', bild: 'assets/projekte/bilder/Thomas-Mann-Grundschule.png', dateiname: 'src/assets/projekte/pdf/Thomas-Mann-Grundschule.pdf' },
-        { slug: 'Tesla-Gemeinschaftsschule', titel: 'Tesla-Gemeinschaftsschule', ort: 'Berlin Pankow', bild: 'assets/projekte/bilder/Tesla-Gemeinschaftsschule.png', dateiname: 'src/assets/projekte/pdf/Tesla-Gemeinschaftsschule.pdf' },
+        { slug: 'Hans-und-Hilde-Coppi-Gymnasium', titel: 'Hans-und-Hilde-Coppi-Gymnasium', ort: 'Berlin Lichtenberg', bild: 'assets/projekte/bilder/Hans-und-Hilde-Coppi-Gymnasium.png', dateiname: 'Hans-und-Hilde-Coppi-Gymnasium.pdf' },
+        { slug: 'Benjamin-Franklin-Oberschule', titel: 'Benjamin-Franklin-Oberschule', ort: 'Berlin Reinickendorf ', bild: 'assets/projekte/bilder/Benjamin-Franklin-Oberschule.png', dateiname: 'Benjamin-Franklin-Oberschule.pdf' },
+        { slug: 'Cauer-Grundschule', titel: 'Cauer-Grundschule', ort: 'Berlin Charlottenburg-Wilmersdorf', bild: 'assets/projekte/bilder/Cauer-Grundschule.png', dateiname: 'Cauer-Grundschule.pdf' },
+        { slug: 'Thomas-Mann-Grundschule', titel: 'Thomas-Mann-Grundschule', ort: 'Berlin Pankow', bild: 'assets/projekte/bilder/Thomas-Mann-Grundschule.png', dateiname: 'Thomas-Mann-Grundschule.pdf' },
+        { slug: 'Tesla-Gemeinschaftsschule', titel: 'Tesla-Gemeinschaftsschule', ort: 'Berlin Pankow', bild: 'assets/projekte/bilder/Tesla-Gemeinschaftsschule.png', dateiname: 'Tesla-Gemeinschaftsschule.pdf' },
       ]
     },
     {
