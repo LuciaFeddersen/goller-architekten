@@ -1,0 +1,26 @@
+<section class="max-w-5xl mx-auto px-6 py-16 flex flex-col items-center space-y-10">
+
+  <!-- Projekttitel -->
+  <h1 class="text-4xl md:text-5xl font-extralight text-center text-gray-900 break-words">
+    {{ slug }}
+  </h1>
+  <p class="text-center text-gray-600 max-w-3xl">
+    Hier können Sie das Projekt-Dokument einsehen und herunterladen.
+  </p>
+
+  <!-- Download Button -->
+  <a [href]="pdfUrl" target="_blank"
+     class="mt-6 px-8 py-3 bg-orange-600 text-white rounded-xl shadow-lg hover:bg-orange-500 transition-all duration-300">
+    PDF herunterladen
+  </a>
+
+  <!-- PDF Viewer -->
+  <div class="w-full shadow-2xl rounded-xl overflow-hidden border border-gray-200 mt-8">
+    <iframe 
+      [src]="pdfUrlWithParams | safeUrl"
+      class="w-full h-[80vh] md:h-[900px]"
+      style="border:none;">
+    </iframe>
+  </div>
+
+</section>

@@ -1,0 +1,105 @@
+<section class="max-w-7xl mx-auto px-6 py-24">
+
+  <h1 class="text-4xl font-extralight mb-16 text-center text-gray-900">Team</h1>
+
+  <!-- PLANUNG -->
+  <section class="mb-20">
+    <h2 class="text-2xl font-semibold mb-10 text-gray-800">Planung</h2>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
+      @for (member of planung; track member.name) {
+        <div class="text-center bg-white rounded-xl shadow-lg overflow-hidden p-6">
+
+          <!-- Bild oder Icon -->
+          <div class="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-orange-200 flex items-center justify-center bg-orange-100">
+            <ng-container *ngIf="member.image; else placeholderIcon">
+              <img
+                [src]="'assets/images/team/' + member.image"
+                [alt]=""
+                class="w-full h-full object-cover"
+              />
+            </ng-container>
+            <ng-template #placeholderIcon>
+              <svg class="w-16 h-16 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
+              </svg>
+            </ng-template>
+          </div>
+
+          <p class="font-semibold text-lg text-gray-900">{{ member.name }}</p>
+          <p class="text-sm text-gray-500 mt-1">seit {{ member.since }} im Büro</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- BAULEITUNG -->
+  <section class="mb-20">
+    <h2 class="text-2xl font-semibold mb-10 text-gray-800">Bauleitung</h2>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
+      @for (member of bauleitung; track member.name) {
+        <div class="text-center bg-white rounded-xl shadow-lg overflow-hidden p-6">
+
+          <!-- Bild oder Icon -->
+          <div class="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-orange-200 flex items-center justify-center bg-orange-100">
+            <ng-container *ngIf="member.image; else placeholderIcon">
+              <img
+                [src]="'assets/images/team/' + member.image"
+                [alt]=""
+                class="w-full h-full object-cover"
+              />
+            </ng-container>
+            <ng-template #placeholderIcon>
+              <svg class="w-16 h-16 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
+              </svg>
+            </ng-template>
+          </div>
+
+          <p class="font-semibold text-lg text-gray-900">{{ member.name }}</p>
+          <p class="text-sm text-gray-500 mt-1">seit {{ member.since }} im Büro</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- ASSISTENZ -->
+  <section class="mb-20">
+    <h2 class="text-2xl font-semibold mb-10 text-gray-800">Assistenz der Geschäftsleitung</h2>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
+      @for (member of assistenz; track member.name) {
+        <div class="text-center bg-white rounded-xl shadow-lg overflow-hidden p-6">
+
+          <!-- Bild oder Icon -->
+          <div class="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-orange-200 flex items-center justify-center bg-orange-100">
+            <ng-container *ngIf="member.image; else placeholderIcon">
+              <img
+                [src]="'assets/images/team/' + member.image"
+                [alt]=""
+                class="w-full h-full object-cover"
+              />
+            </ng-container>
+            <ng-template #placeholderIcon>
+              <svg class="w-16 h-16 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
+              </svg>
+            </ng-template>
+          </div>
+
+          <p class="font-semibold text-lg text-gray-900">{{ member.name }}</p>
+          <p class="text-sm text-gray-500 mt-1">seit {{ member.since }} im Büro</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- FREIE MITARBEITER -->
+  <section class="border-t border-gray-200 pt-12">
+    <p class="text-gray-600 max-w-3xl leading-relaxed mx-auto text-center">
+      Zusätzlich verstärken wir unser Team bei Bedarf durch
+      <strong>drei freie Mitarbeiter*innen</strong>.<br /><br />
+      Alle oben genannten Mitarbeiter*innen können im Rahmen ihres
+      Leistungsbereichs nach Erfordernis projektbezogen eingesetzt werden.
+    </p>
+  </section>
+
+</section>

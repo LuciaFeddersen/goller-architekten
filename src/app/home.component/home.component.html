@@ -1,53 +1,61 @@
 <section class="max-w-7xl mx-auto px-6">
+
   <!-- Hero -->
   <div class="grid md:grid-cols-2 gap-12 items-center py-24">
     <div>
-      <h1 class="text-5xl font-light leading-tight">
+      <h1 class="text-5xl md:text-6xl font-extralight leading-tight text-gray-900">
         Architektur<br />
         mit Haltung<br />
         und Klarheit
       </h1>
-      <p class="mt-6 text-neutral-600">
+      <p class="mt-6 text-gray-600 text-lg max-w-lg">
         Wir planen nachhaltige, funktionale und zeitlose Architektur –
         vom Entwurf bis zur Realisierung.
       </p>
 
       <a
         routerLink="/projekte"
-        class="inline-block mt-8 px-6 py-3 border border-black text-sm uppercase tracking-wide hover:bg-black hover:text-white transition"
+        class="inline-block mt-8 px-8 py-3 bg-orange-700 text-white font-medium rounded-lg uppercase tracking-wide hover:bg-orange-600 transition-all duration-300 shadow-md"
       >
         Projekte ansehen
       </a>
     </div>
 
-    <div class="h-[420px] bg-neutral-200"></div>
+    <div class="h-[420px] md:h-[480px] bg-neutral-200 rounded-xl overflow-hidden shadow-lg">
+      <img 
+        src="assets/images/eingangsbereich.png" 
+        alt="Bild vom Eingangsbereich Kulturbau Schoeler-Schlösschen" 
+        class="object-cover w-full h-full"
+      />
+    </div>
   </div>
 
   <!-- Leistungen Teaser -->
   <div class="py-24 border-t border-neutral-200">
-    <h2 class="text-3xl font-light mb-12">Unsere Leistungen</h2>
+    <h2 class="text-3xl md:text-4xl font-light mb-12 text-gray-900">Unsere Leistungen</h2>
 
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="p-6 bg-white border">
-        <h3 class="font-medium mb-2">Entwurfsplanung</h3>
-        <p class="text-sm text-neutral-600">
+      <div class="p-6 bg-white border rounded-xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-medium text-lg mb-2">Entwurfsplanung</h3>
+        <p class="text-sm text-gray-600">
           Konzepte mit architektonischer Identität.
         </p>
       </div>
 
-      <div class="p-6 bg-white border">
-        <h3 class="font-medium mb-2">Ausführungsplanung</h3>
-        <p class="text-sm text-neutral-600">
+      <div class="p-6 bg-white border rounded-xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-medium text-lg mb-2">Ausführungsplanung</h3>
+        <p class="text-sm text-gray-600">
           Präzise Planung für reibungslose Umsetzung.
         </p>
       </div>
 
-      <div class="p-6 bg-white border">
-        <h3 class="font-medium mb-2">Projektsteuerung</h3>
-        <p class="text-sm text-neutral-600">
+      <div class="p-6 bg-white border rounded-xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-medium text-lg mb-2">Projektsteuerung</h3>
+        <p class="text-sm text-gray-600">
           Kosten, Termine und Qualität im Blick.
         </p>
       </div>
     </div>
   </div>
+
 </section>

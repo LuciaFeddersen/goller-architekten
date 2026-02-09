@@ -10,5 +10,5 @@ import { MaintenanceComponent } from './maintenance-component/maintenance-compon
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  maintenanceMode = true;
+  maintenanceMode = false;
 }

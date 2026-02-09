@@ -1,17 +1,87 @@
-<section class="max-w-7xl mx-auto px-6 py-24">
-  <h1 class="text-4xl font-light mb-12">Projekte</h1>
+<section class="max-w-7xl mx-auto px-6 py-24 space-y-24">
 
-  <div class="grid md:grid-cols-3 gap-8">
-    @for (projekt of ['wohnhaus-a', 'museum-b', 'buero-c']; track projekt) {
+  <!-- Aktuelle Projekte -->
+  <div>
+    <h1 class="text-4xl font-light mb-12 text-gray-800">Aktuelle Projekte</h1>
+
+    <div class="grid md:grid-cols-3 gap-8">
       <a
-        [routerLink]="['/projekte', projekt]"
-        class="group"
+        *ngFor="let projekt of aktuelleProjekte"
+        [routerLink]="['/projekte', projekt.slug]"
+        class="group block bg-white rounded-xl shadow-lg overflow-hidden
+               transition-all duration-300
+               hover:-translate-y-1 hover:shadow-2xl"
       >
-        <div class="h-64 bg-neutral-200"></div>
-        <h2 class="mt-4 font-medium group-hover:underline">
-          Projekt {{ projekt }}
-        </h2>
+
+        <!-- Bild -->
+        <div
+          class="h-64 bg-neutral-200 transition-transform duration-500 group-hover:scale-105"
+          [ngStyle]="{
+            'background-image': projekt.bild ? 'url(' + projekt.bild + ')' : 'none',
+            'background-size': 'cover',
+            'background-position': 'center'
+          }">
+        </div>
+
+        <!-- Inhalt -->
+        <div class="p-5">
+          <h2 class="font-semibold text-xl mb-1 text-gray-900">
+            {{ projekt.titel }}
+          </h2>
+          <h3 class="text-gray-500 mb-4">
+            {{ projekt.ort }}
+          </h3>
+
+          <span class="text-sm font-medium text-orange-700">
+            Projekt ansehen →
+          </span>
+        </div>
+
       </a>
-    }
+    </div>
   </div>
+
+  <!-- Abgeschlossene Projekte -->
+  <div *ngFor="let kategorie of abgeschlosseneProjekte">
+    <h1 class="text-4xl font-light mb-12 text-gray-800">
+      {{ kategorie.kategorie }}
+    </h1>
+
+    <div class="grid md:grid-cols-4 gap-8">
+      <a
+        *ngFor="let projekt of kategorie.projekte"
+        [routerLink]="['/projekte', projekt.slug]"
+        class="group block bg-white rounded-xl shadow-lg overflow-hidden
+               transition-all duration-300
+               hover:-translate-y-1 hover:shadow-2xl"
+      >
+
+        <!-- Bild -->
+        <div
+          class="h-64 bg-neutral-200 transition-transform duration-500 group-hover:scale-105"
+          [ngStyle]="{
+            'background-image': projekt.bild ? 'url(' + projekt.bild + ')' : 'none',
+            'background-size': 'cover',
+            'background-position': 'center'
+          }">
+        </div>
+
+        <!-- Inhalt -->
+        <div class="p-5">
+          <h2 class="font-semibold text-lg mb-1 text-gray-900">
+            {{ projekt.titel }}
+          </h2>
+          <h3 class="text-gray-500 mb-4">
+            {{ projekt.ort }}
+          </h3>
+
+          <span class="text-sm font-medium text-orange-700">
+            Projekt ansehen →
+          </span>
+        </div>
+
+      </a>
+    </div>
+  </div>
+
 </section>

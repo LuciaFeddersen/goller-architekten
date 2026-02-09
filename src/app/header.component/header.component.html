@@ -1,22 +1,54 @@
-<header
-  class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur border-b border-neutral-200"
->
+<header class="fixed top-0 left-0 w-full z-50 bg-orange-700 text-white shadow-md backdrop-blur-md">
   <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-    <a routerLink="/" class="text-xl font-semibold tracking-wide">
-      Architektur Müller
+
+    <!-- Logo -->
+    <a routerLink="/" class="text-2xl md:text-3xl font-extrabold tracking-tight hover:text-orange-200 transition-colors">
+      Frank Goller Architekten
     </a>
 
-    <nav class="flex gap-8 text-sm font-medium">
-      <a routerLink="/leistungen" routerLinkActive="text-black" class="text-neutral-600 hover:text-black">
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex gap-10 text-sm md:text-base font-medium">
+      <a routerLink="" routerLinkActive="" class="hover:text-orange-200 transition-colors">
+        Home
+      </a>
+      <a routerLink="/services" routerLinkActive="underline" class="hover:text-orange-200 transition-colors">
         Leistungen
       </a>
-      <a routerLink="/projekte" routerLinkActive="text-black" class="text-neutral-600 hover:text-black">
+      <a routerLink="/projekte" routerLinkActive="underline" class="hover:text-orange-200 transition-colors">
         Projekte
       </a>
-      <a routerLink="/team" routerLinkActive="text-black" class="text-neutral-600 hover:text-black">
+      <a routerLink="/team" routerLinkActive="underline" class="hover:text-orange-200 transition-colors">
         Team
       </a>
-      <a routerLink="/ueber-uns" routerLinkActive="text-black" class="text-neutral-600 hover:text-black">
+    </nav>
+
+    <!-- Mobile Hamburger Button -->
+    <button (click)="isOpen = !isOpen" class="md:hidden flex items-center focus:outline-none p-2 rounded hover:bg-orange-600 transition-colors">
+      <svg *ngIf="!isOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+      <svg *ngIf="isOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div *ngIf="isOpen" class="md:hidden bg-orange-700 text-white border-t border-orange-600">
+    <nav class="flex flex-col px-6 py-4 gap-4">
+      <a routerLink="/services" routerLinkActive="underline" (click)="isOpen=false" class="hover:text-orange-200 transition-colors">
+        Leistungen
+      </a>
+      <a routerLink="/projekte" routerLinkActive="underline" (click)="isOpen=false" class="hover:text-orange-200 transition-colors">
+        Projekte
+      </a>
+      <a routerLink="/team" routerLinkActive="underline" (click)="isOpen=false" class="hover:text-orange-200 transition-colors">
+        Team
+      </a>
+      <a routerLink="/ueber-uns" routerLinkActive="underline" (click)="isOpen=false" class="hover:text-orange-200 transition-colors">
         Über uns
       </a>
     </nav>
