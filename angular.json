@@ -12,6 +12,12 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "prerender": {
+        "discoverRoutes": true,
+        "excludeRoutes": [
+          "/projekte/:slug"
+        ]
+      },
       "architect": {
         "build": {
           "builder": "@angular/build:application",
