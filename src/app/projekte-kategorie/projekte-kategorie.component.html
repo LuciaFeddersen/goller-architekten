@@ -1,0 +1,168 @@
+<section class="h-screen flex flex-col px-6 py-4 max-w-7xl mx-auto">
+
+  <!-- ← Zurück -->
+  <div class="mb-4">
+    <button (click)="goBack()" 
+            class="text-gray-700 hover:text-orange-600 font-semibold">
+      ← Zurück zur Übersicht
+    </button>
+  </div>
+
+  <!-- Mobile Dropdown -->
+  <div class="md:hidden mb-4" *ngIf="projekteInKategorie?.length">
+    <label for="projekt-select" 
+           class="block text-gray-700 font-medium mb-2">
+      Projekt auswählen:
+    </label>
+
+    <select #projektSelect 
+            id="projekt-select"
+            class="w-full border-gray-300 rounded-lg p-2"
+            (change)="onSelectChange(projektSelect.selectedIndex)">
+
+      <option *ngFor="let projekt of projekteInKategorie"
+              [selected]="projekt === selectedProjekt">
+        {{ projekt.titel }}
+      </option>
+
+    </select>
+  </div>
+
+  <!-- Desktop Layout -->
+  <div class="hidden md:flex flex-1 gap-8 h-full">
+
+    <!-- Linke Spalte: Projektliste -->
+    <div class="w-1/4 overflow-y-auto h-full border-r border-gray-200 pr-4"
+         *ngIf="projekteInKategorie?.length">
+
+      <a *ngFor="let projekt of projekteInKategorie"
+         (click)="selectProjekt(projekt)"
+         class="flex items-center gap-3 cursor-pointer p-3 mb-2 rounded-lg transition-colors"
+         [class.bg-gray-200]="projekt === selectedProjekt"
+         [class.font-semibold]="projekt === selectedProjekt"
+         [class.hover:bg-gray-100]="projekt !== selectedProjekt">
+
+        <!-- Vorschaubild -->
+        <img *ngIf="projekt.bilder?.length"
+             [src]="projekt.anzeigeBild || projekt.bilder[0]"
+             alt="{{ projekt.titel }}"
+             class="w-14 h-14 object-cover rounded-md flex-shrink-0">
+
+        <!-- Titel -->
+        <div>
+          <h3 class="text-gray-900 text-sm">
+            {{ projekt.titel }}
+          </h3>
+        </div>
+
+      </a>
+
+    </div>
+
+    <!-- Rechte Spalte: Projektdetails -->
+    <div class="w-3/4 overflow-y-auto h-full pl-4 flex flex-col space-y-6"
+         *ngIf="selectedProjekt">
+
+      <!-- Projektdaten -->
+      <h2 class="text-3xl font-semibold text-gray-900">
+        {{ selectedProjekt.titel || '-' }}
+      </h2>
+
+      <h3 class="text-xl text-gray-600">
+        {{ selectedProjekt.ort || '-' }}
+      </h3>
+
+      <!--
+      <h4 class="text-lg font-medium">
+        {{ selectedProjekt.architekt || '-' }}
+      </h4>-->
+
+      <p class="text-gray-700">
+        {{ selectedProjekt.adresse || '-' }}
+      </p>
+
+      <!-- Bauabschnitte -->
+      <div *ngFor="let ba of selectedProjekt.bauabschnitte || []"
+           class="border-t border-gray-200 pt-4">
+
+        <h5 class="font-semibold">
+          {{ ba.nummer || 'Bauabschnitt' }}
+        </h5>
+
+        <ul class="list-disc pl-5 space-y-1">
+          <li *ngFor="let text of ba.beschreibung || []">
+            {{ text }}
+          </li>
+        </ul>
+
+        <p *ngIf="ba.finanzierung">
+          <strong>Finanzierung:</strong> {{ ba.finanzierung }}
+        </p>
+
+        <p *ngIf="ba.baukosten">
+          <strong>Baukosten:</strong> {{ ba.baukosten }}
+        </p>
+
+        <p *ngIf="ba.planung">
+          <strong>Planung:</strong> {{ ba.planung }}
+        </p>
+
+        <p *ngIf="ba.bauausfuehrung">
+          <strong>Bauausführung:</strong> {{ ba.bauausfuehrung }}
+        </p>
+
+      </div>
+
+      <!-- Bauherr & Ansprechpartner -->
+      <div *ngIf="selectedProjekt.bauherr" class="pt-4">
+
+        <p>
+          <strong>Bauherr:</strong> {{ selectedProjekt.bauherr }}
+        </p>
+
+        <ul *ngIf="selectedProjekt.ansprechpartner?.length"
+            class="list-disc pl-5 space-y-1">
+
+          <li *ngFor="let ap of selectedProjekt.ansprechpartner">
+            {{ ap.rolle || '-' }}:
+            {{ ap.name || '-' }}
+            <span *ngIf="ap.telefon">({{ ap.telefon }})</span>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <!-- Bilder-Karussell -->
+      <div class="relative">
+
+        <div #carousel
+             class="flex overflow-x-auto space-x-4 scrollbar-hide py-2">
+
+          <img *ngFor="let bild of selectedProjekt.bilder"
+               [src]="bild"
+               alt="{{ selectedProjekt.titel }}"
+               class="flex-none w-1/3 object-cover rounded-lg">
+
+        </div>
+
+        <!-- Pfeile -->
+        <button (click)="scrollLeft(carousel)"
+                class="absolute left-0 top-1/2 -translate-y-1/2 
+                       bg-white bg-opacity-50 p-2 rounded hover:bg-opacity-80">
+          ‹
+        </button>
+
+        <button (click)="scrollRight(carousel)"
+                class="absolute right-0 top-1/2 -translate-y-1/2 
+                       bg-white bg-opacity-50 p-2 rounded hover:bg-opacity-80">
+          ›
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

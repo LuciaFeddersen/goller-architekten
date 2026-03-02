@@ -1,49 +1,91 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 
-export interface Projekt {
-  slug: string;        // für die URL /routerLink
-  titel: string;      
-  ort?: string;       // optional, z.B. für die Anzeige des Projektstandorts
-  dateiname?: string;  // optional, z.B. PDF-Datei
-  bild?: string;       // optional, Pfad zum Projektbild
+interface Kategorie {
+  titel: string;
+  bild: string;
+  beschreibung: string;
+  slug: string;
 }
 
 @Component({
   selector: 'app-projekt',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './projekt.component.html',
+  styleUrls: ['./projekt.component.css'],
 })
-export class ProjektComponent {
-
-  aktuelleProjekte: Projekt[] = [
-    { slug: 'wohnhaus-a', titel: 'Wohnhaus A', bild: 'assets/images/wohnhaus-a.jpg', dateiname: 'wohnhaus-a.pdf' },
-    { slug: 'museum-b', titel: 'Museum B', bild: 'assets/images/museum-b.jpg', dateiname: 'museum-b.pdf' },
-    { slug: 'buero-c', titel: 'Büro C', bild: 'assets/images/buero-c.jpg', dateiname: 'buero-c.pdf' },
+export class ProjektComponent implements OnInit {
+  projektKategorien: Kategorie[] = [
+    { titel: 'Bildung', bild: '/assets/bildung.jpg', beschreibung: 'Unsere Bildungsprojekte', slug: 'bildung' },
+    { titel: 'Soziales', bild: '/assets/soziales.jpg', beschreibung: 'Laufende Sozialprojekte', slug: 'soziales' },
+    { titel: 'Kultur', bild: '/assets/kultur.jpg', beschreibung: 'Kulturprojekte', slug: 'kultur' },
   ];
 
-  abgeschlosseneProjekte: { kategorie: string, projekte: Projekt[] }[] = [
-    {
-      kategorie: 'Schulen',
-      projekte: [
-        { slug: 'Hans-und-Hilde-Coppi-Gymnasium', titel: 'Hans-und-Hilde-Coppi-Gymnasium', ort: 'Berlin Lichtenberg', bild: 'assets/projekte/bilder/Hans-und-Hilde-Coppi-Gymnasium.png', dateiname: 'Hans-und-Hilde-Coppi-Gymnasium.pdf' },
-        { slug: 'Benjamin-Franklin-Oberschule', titel: 'Benjamin-Franklin-Oberschule', ort: 'Berlin Reinickendorf ', bild: 'assets/projekte/bilder/Benjamin-Franklin-Oberschule.png', dateiname: 'Benjamin-Franklin-Oberschule.pdf' },
-        { slug: 'Cauer-Grundschule', titel: 'Cauer-Grundschule', ort: 'Berlin Charlottenburg-Wilmersdorf', bild: 'assets/projekte/bilder/Cauer-Grundschule.png', dateiname: 'Cauer-Grundschule.pdf' },
-        { slug: 'Thomas-Mann-Grundschule', titel: 'Thomas-Mann-Grundschule', ort: 'Berlin Pankow', bild: 'assets/projekte/bilder/Thomas-Mann-Grundschule.png', dateiname: 'Thomas-Mann-Grundschule.pdf' },
-        { slug: 'Tesla-Gemeinschaftsschule', titel: 'Tesla-Gemeinschaftsschule', ort: 'Berlin Pankow', bild: 'assets/projekte/bilder/Tesla-Gemeinschaftsschule.png', dateiname: 'Tesla-Gemeinschaftsschule.pdf' },
-      ]
-    },
-    {
-      kategorie: 'Kindertagesstätten',
-      projekte: [
-        { slug: 'Kindertagesstätte im Park Jungfernheide', titel: 'Kindertagesstätte im Park Jungfernheide', ort: 'Berlin Charlottenburg-Wilmersdorf', bild: 'src/assets/projekte/bilder/Kindertagesstätte im Park Jungfernheide.png', dateiname: 'src/assets/projekte/pdf/Kindertagesstätte im Park Jungfernheide.pdf' },
-      ]
+  currentIndex = 0;
+  intervalMs = 3000;
+  intervalId: any;
+
+  private touchStartX = 0;
+  private touchEndX = 0;
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.startAutoSlide();
+  }
+
+  startAutoSlide() {
+    this.intervalId = setInterval(() => this.nextSlide(), this.intervalMs);
+  }
+
+  nextSlide() {
+    this.currentIndex = (this.currentIndex + 1) % this.projektKategorien.length;
+  }
+
+  prevSlide() {
+    this.currentIndex =
+      (this.currentIndex - 1 + this.projektKategorien.length) % this.projektKategorien.length;
+  }
+
+  goToSlide(index: number) {
+    this.currentIndex = index;
+    this.resetInterval();
+  }
+
+  openKategorie(kategorie: Kategorie) {
+    console.log('Navigiere zu Kategorie:', kategorie.slug);
+    // Immer die lokale Variable nutzen, nicht currentIndex!
+    this.router.navigate(['/projekte', kategorie.slug]);
+  }
+
+  resetInterval() {
+    clearInterval(this.intervalId);
+    this.startAutoSlide();
+  }
+
+  // Swipe Events
+  @HostListener('pointerdown', ['$event'])
+  onPointerDown(event: PointerEvent) {
+    this.touchStartX = event.clientX;
+  }
+
+  @HostListener('pointerup', ['$event'])
+  onPointerUp(event: PointerEvent) {
+    this.touchEndX = event.clientX;
+    this.handleSwipe();
+  }
+
+  handleSwipe() {
+    const swipeDistance = this.touchEndX - this.touchStartX;
+    const minDistance = 50;
+    if (swipeDistance > minDistance) {
+      this.prevSlide();
+      this.resetInterval();
+    } else if (swipeDistance < -minDistance) {
+      this.nextSlide();
+      this.resetInterval();
     }
-  ];
-
+  }
 }
-
-
-

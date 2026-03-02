@@ -3,3 +3,87 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ============================= */
+/* Monochromes, klares Basis-Style */
+/* ============================= */
+
+@layer base {
+  /* ----------------------------- */
+  /* Globale Schrift & Farben */
+  /* ----------------------------- */
+  html {
+    font-family: "Calibri", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #111111;        /* Haupttextfarbe */
+    line-height: 1.6;      /* Luft zwischen Zeilen */
+    background-color: #ffffff; /* Weißer Hintergrund */
+  }
+
+  body {
+    /*padding: 2rem;    */      /* Innenabstand für Layout */
+  }
+
+  /* ----------------------------- */
+  /* Überschriften (Haltung & Klarheit) */
+  /* ----------------------------- */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;        /* Stärke und Präsenz */
+    color: #111111;          /* Hauptfarbe */
+    letter-spacing: -0.5px;  /* leicht gestreckte Schrift für Klarheit */
+    margin-bottom: 1rem;
+  }
+
+  /* ----------------------------- */
+  /* Fließtext */
+  /* ----------------------------- */
+  p, li {
+    font-weight: 300;        /* Ruhe & Lesbarkeit */
+    color: #333333;          /* leichtes Grau */
+    margin-bottom: 1rem;
+  }
+
+  /* ----------------------------- */
+  /* Sekundärtext / Details */
+  /* ----------------------------- */
+  small, .muted {
+    color: #777777;          /* dezentes Grau */
+    font-weight: 300;
+  }
+
+  /* ----------------------------- */
+  /* Abschnitte & Weißraum */
+  /* ----------------------------- */
+  section {
+    margin-bottom: 4rem;     /* Abstand zwischen Bereichen */
+  }
+
+  /* ----------------------------- */
+  /* Minimalistische Linien */
+  /* ----------------------------- */
+  hr {
+    border: none;
+    border-top: 1px solid #ddd; /* dezente Trennung */
+    margin: 2rem 0;
+  }
+
+  /* ----------------------------- */
+  /* Links & Akzente nur in Graustufen */
+  /* ----------------------------- */
+  a {
+    color: #111111;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #333333;
+  }
+
+  @font-face {
+  font-family: 'FrankGollerLogo';
+  src: url('/fonts/FrankGollerLogo.woff2') format('woff2'),
+       url('/fonts/FrankGollerLogo.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+}
